@@ -1,0 +1,74 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage[left=3cm,right=2cm,top=3cm,bottom=2cm]{geometry}
+
+\title{Análise Comparativa de Algoritmos de Busca: \\Um Estudo de Caso no Mapa da Romênia}
+\author{Ruan Henrique Borges Saraiva}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Este artigo apresenta uma análise comparativa de diferentes algoritmos de busca aplicados ao problema de encontrar rotas no mapa da Romênia. São implementados e analisados oito algoritmos: Busca em Largura (BFS), Busca de Custo Uniforme (UCS), Busca em Profundidade (DFS), Busca em Profundidade Limitada (DLS), Busca de Aprofundamento Iterativo (IDS), Busca Bidirecional, Busca Gulosa e A*. Os resultados mostram as diferenças em termos de caminhos encontrados e custos totais para diferentes cenários.
+\end{abstract}
+
+\section{Introdução}
+O problema de encontrar caminhos entre cidades é um dos desafios fundamentais na área de Inteligência Artificial, especialmente no contexto de algoritmos de busca. Este trabalho aborda a implementação e análise de diferentes estratégias de busca aplicadas ao mapa da Romênia, um problema clássico na literatura de IA.
+
+A busca por caminhos em grafos tem aplicações práticas em diversos domínios, desde sistemas de navegação até planejamento logístico. Compreender o comportamento e eficiência de diferentes algoritmos de busca é crucial para escolher a estratégia mais adequada para cada situação.
+
+\section{Fundamentação Teórica}
+\subsection{Busca em Largura (BFS)}
+A Busca em Largura é um algoritmo que explora sistematicamente todos os nós de um grafo, nível por nível. Ele garante encontrar o caminho com menor número de arestas entre dois pontos, mas não necessariamente o caminho de menor custo quando as arestas têm pesos diferentes.
+
+\subsection{Busca de Custo Uniforme (UCS)}
+A Busca de Custo Uniforme é uma variação da BFS que considera o custo das arestas. Ela sempre encontra o caminho de menor custo total entre dois pontos, expandindo os nós em ordem crescente de custo acumulado.
+
+\subsection{Busca em Profundidade (DFS)}
+A Busca em Profundidade explora o grafo seguindo um ramo até sua profundidade máxima antes de retroceder. Embora não garanta o caminho mais curto, é eficiente em termos de memória.
+
+\subsection{Busca em Profundidade Limitada (DLS)}
+A DLS é uma variação da DFS que limita a profundidade máxima da busca, evitando assim caminhos muito longos ou loops infinitos em grafos cíclicos.
+
+\subsection{Busca de Aprofundamento Iterativo (IDS)}
+O IDS combina as vantagens da BFS e DFS, realizando buscas em profundidade com limite crescente até encontrar uma solução.
+
+\subsection{Busca Bidirecional}
+A Busca Bidirecional realiza duas buscas simultâneas: uma a partir do nó inicial e outra a partir do nó objetivo, encontrando-se no meio do caminho.
+
+\subsection{Busca Gulosa}
+A Busca Gulosa utiliza uma função heurística para estimar o custo até o objetivo, escolhendo sempre o nó que parece estar mais próximo do destino.
+
+\subsection{Busca A*}
+O algoritmo A* combina o custo real do caminho percorrido com uma estimativa heurística do custo restante, garantindo encontrar o caminho ótimo quando a heurística é admissível.
+
+\section{Metodologia}
+Para avaliar os algoritmos, foi implementado um sistema em Python que representa o mapa da Romênia como um grafo ponderado. Cada cidade é um nó, e as estradas são arestas com pesos representando as distâncias. Foram realizados testes com diferentes pares de cidades para comparar o desempenho dos algoritmos.
+
+\section{Resultados e Discussão}
+Foram realizados testes com diferentes pares de cidades do mapa da Romênia. A seguir, apresentamos os resultados para o trajeto de Bucharest a Arad:
+
+\begin{itemize}
+\item \textbf{BFS:} Encontrou um caminho de custo 450 (Bucharest → Fagaras → Sibiu → Arad)
+\item \textbf{UCS:} Encontrou o caminho ótimo de custo 418 (Bucharest → Pitesti → Rimnicu Vilcea → Sibiu → Arad)
+\item \textbf{DFS:} Encontrou um caminho de custo 450 (Bucharest → Fagaras → Sibiu → Arad)
+\item \textbf{DLS:} Com limite 3, encontrou um caminho de custo 450
+\item \textbf{IDS:} Encontrou um caminho de custo 450
+\item \textbf{Busca Bidirecional:} Encontrou o caminho ótimo de custo 418
+\item \textbf{Busca Gulosa:} Encontrou um caminho de custo 450
+\item \textbf{A*:} Encontrou o caminho ótimo de custo 418
+\end{itemize}
+
+Observa-se que UCS, Busca Bidirecional e A* encontraram o caminho de menor custo (418), enquanto os outros algoritmos encontraram caminhos alternativos com custo maior (450). Isso demonstra a eficácia dos algoritmos que consideram o custo das arestas em sua estratégia de busca.
+
+\section{Conclusão}
+A análise comparativa dos algoritmos de busca no mapa da Romênia revelou características importantes de cada estratégia. Os algoritmos que consideram o custo das arestas (UCS, Busca Bidirecional e A*) foram mais eficientes em encontrar o caminho de menor custo total. A BFS, DFS e suas variações, embora também encontrem caminhos válidos, não garantem a otimalidade em termos de custo total.
+
+A escolha do algoritmo mais adequado depende dos requisitos específicos do problema. Se a otimalidade do caminho é crucial, UCS ou A* são as melhores escolhas. Se a memória é um fator limitante, DFS ou IDS podem ser mais apropriados. A Busca Bidirecional mostrou-se uma alternativa eficiente, combinando boa performance com garantia de otimalidade.
+
+\end{document}
